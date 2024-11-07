@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <ul class="nav nav-tabs mb-3" id="loginTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab">Administrateur</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab">Utilisateur</button>
+                        </li>
+                    </ul>
+
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    <div class="tab-content" id="loginTabsContent">
+                        {# Formulaire Admin #}
+                        <div class="tab-pane fade show active" id="admin" role="tabpanel">
+                            <h3 class="h4 mb-3">Connexion Administrateur</h3>
+                            <form method="post">
+                                <div class="mb-3">
+                                    <label for="inputUsername">Nom d'utilisateur</label>
+                                    <input type="text" value="MrScrupulus" name="username" id="inputUsername" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="inputPassword">Mot de passe</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+                                </div>
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                                <button class="btn btn-primary" type="submit">Connexion Admin</button>
+                            </form>
+                        </div>
+
+                        {# Formulaire Utilisateur #}
+                        <div class="tab-pane fade" id="user" role="tabpanel">
+                            <h3 class="h4 mb-3">Connexion Utilisateur</h3>
+                            <form method="post">
+                                <div class="mb-3">
+                                    <label for="inputUsername">Nom d'utilisateur</label>
+                                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="inputPasswordUser">Mot de passe</label>
+                                    <input type="password" name="password" id="inputPasswordUser" class="form-control" required>
+                                </div>
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                                <button class="btn btn-primary" type="submit">Connexion</button>
+                            </form>
+                            <div class="mt-3">
+                                <a href="{{ path('app_register') }}">Créer un compte</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

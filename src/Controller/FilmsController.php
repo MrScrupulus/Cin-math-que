@@ -79,4 +79,27 @@ class FilmsController extends AbstractController
             'director' => $director
         ]);
     }
+
+    #[Route('/films/realisateur/{director}/ajouter', name: 'films_add_by_director')]
+    public function addByDirector(string $director, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $film = new Film();
+        $film->setDirector($director);  // Pré-remplir le réalisateur
+
+        $form = $this->createForm(FilmType::class, $film);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($film);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Film ajouté avec succès');
+            return $this->redirectToRoute('films_by_director', ['director' => $director]);
+        }
+
+        return $this->render('films/add.html.twig', [
+            'form' => $form->createView(),
+            'director' => $director
+        ]);
+    }
 }

@@ -1,3 +1,24 @@
 body {
-    background-color: skyblue;
+  background-color: darkviolet;
+  color: yellowgreen;
+}
+footer {
+  color: orangered;
+
+  bottom: 0;
+}
+
+.nav-link {
+  color: chartreuse;
+}
+/* .carousel-control-prev-icon .carousel-control-next-icon {
+    color: chartreuse;
+    background-color: chartreuse;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;} */
+
+button:hover {
+  background-color: #0057b377;
+  color: #ffffff;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }

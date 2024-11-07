@@ -20,7 +20,7 @@
             {% for film in films %}
                 <tr>
                     <td>{{ film.id }}</td>
-                    <td>{{ film.title }}</td>
+                    <td class="titre">{{ film.title }}</td>
                     <td>
     <a href="{{ path('films_by_director', {'director': film.director}) }}">
         {{ film.director }}

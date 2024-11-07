@@ -5,6 +5,10 @@
 {% block body %}
     <h1>Films réalisés par {{ director }}</h1>
 
+    <a href="{{ path('films_add_by_director', {'director': director}) }}" class="btn btn-primary mb-3">
+        Ajouter un film pour {{ director }}
+    </a>
+
     <div class="row mt-4">
         {% if films %}
             {% for film in films %}

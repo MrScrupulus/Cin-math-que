@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <h1>Notre équipe</h1>
+    
+    {% set users = [
+        {name: 'Jean Dupont', role: 'Directeur', email: 'jean@example.com'},
+        {name: 'Marie Martin', role: 'Marketing', email: 'marie@example.com'},
+        {name: 'Pierre Durand', role: 'Support', email: 'pierre@example.com'}
+    ] %}
+
+    <div class="row">
+        {% for user in users %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.name }}</h5>
+                        <p class="card-text">
+                            Rôle : {{ user.role }}<br>
+                            Email : {{ user.email }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

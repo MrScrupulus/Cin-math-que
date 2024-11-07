@@ -21,7 +21,11 @@
                 <tr>
                     <td>{{ film.id }}</td>
                     <td>{{ film.title }}</td>
-                    <td>{{ film.director }}</td>
+                    <td>
+    <a href="{{ path('films_by_director', {'director': film.director}) }}">
+        {{ film.director }}
+    </a>
+</td>
                     <td>{{ film.genre }}</td>
                     <td>{{ film.duration }}</td>
                     <td>

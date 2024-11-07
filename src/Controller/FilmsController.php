@@ -68,4 +68,15 @@ class FilmsController extends AbstractController
         $this->addFlash('success', 'Film supprimé avec succès');
         return $this->redirectToRoute('films_index');
     }
+    #[Route('/films/realisateur/{director}', name: 'films_by_director')]
+    public function showByDirector(string $director, EntityManagerInterface $entityManager): Response
+    {
+        $films = $entityManager->getRepository(Film::class)
+            ->findBy(['director' => $director]);
+
+        return $this->render('films/by_director.html.twig', [
+            'films' => $films,
+            'director' => $director
+        ]);
+    }
 }
